@@ -8,7 +8,6 @@ import "./Net/IPAddressTest.js";
 import "./Net/MailAddressTest.js";
 import "./Net/PhoneNumberTest.js";
 import "./Security/AccessLevelTest.js";
-import "./Util/DateRangeTest.js";
 import "./Util/DateTest.js";
 import "./Util/NumberTest.js";
 import "./Util/StringTest.js";
