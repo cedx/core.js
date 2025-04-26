@@ -1,7 +1,7 @@
 /**
  * Provides common HTTP status codes.
  */
-export const Status = Object.freeze({
+export const StatusCodes = Object.freeze({
 
 	/**
 	 * The `OK` status.
@@ -137,4 +137,4 @@ export const Status = Object.freeze({
 /**
  * Provides common HTTP status codes.
  */
-export type Status = typeof Status[keyof typeof Status];
+export type StatusCodes = typeof StatusCodes[keyof typeof StatusCodes];
