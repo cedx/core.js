@@ -47,7 +47,8 @@
 		"#Data/*.js": "./lib/Data/*.js",
 		"#Html/*.js": "./lib/Html/*.js",
 		"#Http/*.js": "./lib/Http/*.js",
-		"#Util/*.js": "./lib/Util/*.js"
+		"#Util/*.js": "./lib/Util/*.js",
+		"#Web/*.js": "./lib/Web/*.js"
 	},
 	"keywords": [
 		"belin",

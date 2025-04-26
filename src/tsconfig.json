@@ -12,6 +12,7 @@
 		{"path": "Security/tsconfig.json"},
 		{"path": "Threading/tsconfig.json"},
 		{"path": "UI/tsconfig.json"},
-		{"path": "Util/tsconfig.json"}
+		{"path": "Util/tsconfig.json"},
+		{"path": "Web/tsconfig.json"}
 	]
 }

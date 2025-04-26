@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import {Sort, SortOrder} from "@cedx/core/Data/Sort.js";
+import {Sort, SortOrder} from "@cedx/core/Web/Sort.js";
 import {assert} from "chai";
 
 /**

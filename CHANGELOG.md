@@ -1,11 +1,14 @@
 # Changelog
 
 ## Version [3.4.0](https://github.com/cedx/core.js/compare/v3.3.0...v3.4.0)
+- Removed the `setState()` middleware.
 - Renamed the `Async` module to `Threading`.
 - Renamed the `Cache` and `CacheSerializer` interfaces to `ICache` and `ICacheSerializer`.
+- Renamed the `Pagination` class to `PaginationState`.
 - Renamed the `Region` class to `RegionInfo`.
 - Renamed the `Task.value` property to `result`.
 - Renamed the values of the `TaskStatus` enumeration.
+- Moved the `PaginationState` and `Sort` classes to the `Web` module.
 - Added the `ICache.getOrCreate()` method.
 - Added the `isCompleted`, `isCompletedSuccessfully` and `isFaulted` properties to the `Task` class.
 
