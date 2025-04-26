@@ -6,6 +6,7 @@
 - Removed the `IO.ImageFormat` enumeration.
 - Renamed the `Html` module to `Web.Html`.
 - Renamed the `UI` module to `Web.UI`.
+- Renamed the `Web.Html.Theme` enumeration to `ThemeMode`.
 
 ## Version [3.4.1](https://github.com/cedx/core.js/compare/v3.4.0...v3.4.1)
 - Fixed a packaging issue.

@@ -1,38 +1,38 @@
 /**
  * Defines the available color modes.
  */
-export const Theme = Object.freeze({
+export const ThemeMode = Object.freeze({
 
 	/**
-	 * The theme is light.
+	 * The light predefined theme mode.
 	 */
 	Light: "Light",
 
 	/**
-	 * The theme is dark.
+	 * The dark predefined theme mode.
 	 */
 	Dark: "Dark",
 
 	/**
-	 * The color mode is automatic.
+	 * The system predefined theme mode.
 	 */
-	Auto: "Auto"
+	System: "System"
 });
 
 /**
  * Defines the available color modes.
  */
-export type Theme = typeof Theme[keyof typeof Theme];
+export type ThemeMode = typeof ThemeMode[keyof typeof ThemeMode];
 
 /**
  * Gets the icon corresponding to the specified theme.
  * @param theme The theme.
  * @returns The icon corresponding to the specified theme.
  */
-export function themeIcon(theme: Theme): string {
+export function themeIcon(theme: ThemeMode): string {
 	switch (theme) {
-		case Theme.Dark: return "dark_mode";
-		case Theme.Light: return "light_mode";
+		case ThemeMode.Dark: return "dark_mode";
+		case ThemeMode.Light: return "light_mode";
 		default: return "tonality";
 	}
 }
@@ -42,10 +42,10 @@ export function themeIcon(theme: Theme): string {
  * @param theme The theme.
  * @returns The label corresponding to the specified theme.
  */
-export function themeLabel(theme: Theme): string {
+export function themeLabel(theme: ThemeMode): string {
 	switch (theme) {
-		case Theme.Dark: return "Sombre";
-		case Theme.Light: return "Clair";
+		case ThemeMode.Dark: return "Sombre";
+		case ThemeMode.Light: return "Clair";
 		default: return "Auto";
 	}
 }

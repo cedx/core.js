@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import {Theme, themeIcon, themeLabel} from "#Web/Html/Theme.js";
+import {ThemeMode, themeIcon, themeLabel} from "#Web/Html/ThemeMode.js";
 import {html, type TemplateResult} from "lit";
 import {customElement, property, state} from "lit/decorators.js";
 import {classMap} from "lit/directives/class-map.js";
@@ -30,7 +30,7 @@ export class ThemeDropdown extends Component {
 	/**
 	 * The current theme.
 	 */
-	@state() private _theme: Theme;
+	@state() private _theme: ThemeMode;
 
 	/**
 	 * The media query used to check the system theme.
@@ -42,17 +42,17 @@ export class ThemeDropdown extends Component {
 	 */
 	constructor() {
 		super();
-		const theme = localStorage.getItem(this.storageKey) as Theme;
-		this._theme = Object.values(Theme).includes(theme) ? theme : Theme.Auto;
+		const theme = localStorage.getItem(this.storageKey) as ThemeMode;
+		this._theme = Object.values(ThemeMode).includes(theme) ? theme : ThemeMode.System;
 	}
 
 	/**
 	 * The current theme.
 	 */
-	get theme(): Theme {
+	get theme(): ThemeMode {
 		return this._theme;
 	}
-	set theme(value: Theme) {
+	set theme(value: ThemeMode) {
 		localStorage.setItem(this.storageKey, this._theme = value);
 		this.#applyTheme();
 	}
@@ -93,7 +93,7 @@ export class ThemeDropdown extends Component {
 					${when(this.label, () => html`<span class="ms-1">${this.label}</span>`)}
 				</a>
 				<ul class="dropdown-menu ${classMap({"dropdown-menu-end": this.align == "end"})}">
-					${Object.values(Theme).map(value => html`
+					${Object.values(ThemeMode).map(value => html`
 						<li>
 							<button class="dropdown-item d-flex align-items-center justify-content-between" @click=${() => this.theme = value}>
 								<span><i class="icon icon-fill me-1">${themeIcon(value)}</i> ${themeLabel(value)}</span>
@@ -110,7 +110,7 @@ export class ThemeDropdown extends Component {
 	 * Applies the theme to the document.
 	 */
 	#applyTheme(): void {
-		const theme = this._theme == Theme.Auto ? (this.#mediaQuery.matches ? Theme.Dark : Theme.Light) : this._theme;
+		const theme = this._theme == ThemeMode.System ? (this.#mediaQuery.matches ? ThemeMode.Dark : ThemeMode.Light) : this._theme;
 		document.documentElement.dataset.bsTheme = theme;
 	}
 }
