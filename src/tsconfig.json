@@ -3,7 +3,6 @@
 	"references": [
 		{"path": "Base/tsconfig.json"},
 		{"path": "Caching/tsconfig.json"},
-		{"path": "Data/tsconfig.json"},
 		{"path": "DependencyInjection/tsconfig.json"},
 		{"path": "Globalization/tsconfig.json"},
 		{"path": "Html/tsconfig.json"},

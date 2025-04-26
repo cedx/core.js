@@ -6,7 +6,7 @@
 	"name": "@cedx/core",
 	"repository": "cedx/core.js",
 	"type": "module",
-	"version": "3.4.1",
+	"version": "3.5.0",
 	"author": {
 		"email": "cedric@belin.io",
 		"name": "Cédric Belin",
@@ -45,7 +45,6 @@
 	],
 	"imports": {
 		"#Base/*.js": "./lib/*.js",
-		"#Data/*.js": "./lib/Data/*.js",
 		"#Html/*.js": "./lib/Html/*.js",
 		"#Net/*.js": "./lib/Net/*.js",
 		"#Web/*.js": "./lib/Web/*.js"
