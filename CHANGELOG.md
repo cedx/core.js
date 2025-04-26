@@ -1,5 +1,12 @@
 # Changelog
 
+## Version [3.5.0](https://github.com/cedx/core.js/compare/v3.4.1...v3.5.0)
+- Moved the `Data.Context` class to the `Web` module.
+- Removed the `Data.Scenario` enumeration.
+- Removed the `IO.ImageFormat` enumeration.
+- Renamed the `Html` module to `Web.Html`.
+- Renamed the `UI` module to `Web.UI`.
+
 ## Version [3.4.1](https://github.com/cedx/core.js/compare/v3.4.0...v3.4.1)
 - Fixed a packaging issue.
 
