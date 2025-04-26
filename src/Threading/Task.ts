@@ -69,9 +69,30 @@ export class Task<T> {
 	}
 
 	/**
-	 * The current value of the task, if it has completed.
+	 * Value indicating whether this task has completed.
 	 */
-	get value(): T|undefined {
+	get isCompleted(): boolean {
+		return this.isCompletedSuccessfully || this.isFaulted;
+	}
+
+	/**
+	 * Value indicating whether this task ran to completion.
+	 */
+	get isCompletedSuccessfully(): boolean {
+		return this.status == TaskStatus.RanToCompletion;
+	}
+
+	/**
+	 * Value indicating whether this task completed due to an unhandled error.
+	 */
+	get isFaulted(): boolean {
+		return this.status == TaskStatus.Faulted;
+	}
+
+	/**
+	 * The result value of this task, if it has completed successfully.
+	 */
+	get result(): T|undefined {
 		return this.#result instanceof Error ? undefined : this.#result; // eslint-disable-line no-undefined
 	}
 	set value(value: T|undefined) {
