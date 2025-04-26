@@ -27,7 +27,7 @@ export type SortedProperty = [string, SortDirection];
 /**
  * Represents information relevant to the sorting of data items.
  */
-export class Sort {
+export class SortState {
 
 	/**
 	 * The list of sorted properties.
@@ -55,7 +55,7 @@ export class Sort {
 	 * @param direction The sort direction.
 	 * @returns The sort corresponding to the property and direction.
 	 */
-	static of(property: string, direction: SortDirection = SortDirection.Ascending): Sort {
+	static of(property: string, direction: SortDirection = SortDirection.Ascending): SortState {
 		return new this([[property, direction]]);
 	}
 
@@ -64,7 +64,7 @@ export class Sort {
 	 * @param value A string representing a sort.
 	 * @returns The sort corresponding to the specified string.
 	 */
-	static parse(value: string): Sort {
+	static parse(value: string): SortState {
 		return new this((value ? value.split(",") : []).map(item => {
 			const direction = item.startsWith("-") ? SortDirection.Descending : SortDirection.Ascending;
 			return [direction == SortDirection.Ascending ? item : item.slice(1), direction];

@@ -10,4 +10,4 @@ import "./Util/DateTest.js";
 import "./Util/NumberTest.js";
 import "./Util/StringTest.js";
 import "./Web/PaginationStateTest.js";
-import "./Web/SortTest.js";
+import "./Web/SortStateTest.js";
