@@ -1,26 +1,26 @@
 /**
  * Represents a country/region.
  */
-export class Region {
+export class RegionInfo {
 
 	/**
-	 * The ISO 3166-1 alpha-2 code.
+	 * The two-letter code defined in ISO 3166 for the country/region.
 	 */
-	readonly code: string;
+	readonly name: string;
 
 	/**
 	 * Creates a new region.
-	 * @param code The ISO 3166-1 alpha-2 code.
+	 * @param name A string that contains a two-letter code defined in ISO 3166 for country/region.
 	 */
-	constructor(code: string) {
-		this.code = code.toUpperCase();
+	constructor(name: string) {
+		this.name = name.toUpperCase();
 	}
 
 	/**
 	 * The emoji flag corresponding to this region.
 	 */
 	get emojiFlag(): string {
-		return String.fromCodePoint(127_397 + this.code.charCodeAt(0), 127_397 + this.code.charCodeAt(1));
+		return String.fromCodePoint(127_397 + this.name.charCodeAt(0), 127_397 + this.name.charCodeAt(1));
 	}
 
 	/**
@@ -29,7 +29,7 @@ export class Region {
 	 * @returns The localized display name in the specified locale.
 	 */
 	displayName(locale: Intl.Locale|string = navigator.language): string {
-		return new Intl.DisplayNames(locale, {type: "region"}).of(this.code) ?? this.code;
+		return new Intl.DisplayNames(locale, {type: "region"}).of(this.name) ?? this.name;
 	}
 
 	/**
@@ -45,6 +45,6 @@ export class Region {
 	 * @returns The string representation of this object.
 	 */
 	toString(): string {
-		return this.code;
+		return this.name;
 	}
 }

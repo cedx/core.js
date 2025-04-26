@@ -81,7 +81,7 @@ export class FileCache implements ICache {
 	 * @returns The cached value.
 	 */
 	async getOrCreate<T>(key: string, factory: () => Promise<T>, duration = -1): Promise<T> {
-		if (!await this.has(key)) this.set(key, await factory(), duration);
+		if (!await this.has(key)) await this.set(key, await factory(), duration);
 		return (await this.get(key))!;
 	}
 

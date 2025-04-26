@@ -9,7 +9,7 @@ describe("Task", () => {
 	const {equal} = assert;
 
 	describe("error", () => {
-		it("should return `null` if the task has completed", async () => {
+		it("should return `null` if the task has completed successfully", async () => {
 			const task = new Task(() => Promise.resolve());
 			await task.run();
 			assert.isNull(task.error);
@@ -31,18 +31,18 @@ describe("Task", () => {
 	});
 
 	describe("status", () => {
-		it("should be `TaskStatus.initial` if the task has not been run", () => {
+		it("should be `TaskStatus.Created` if the task has not been run", () => {
 			const task = new Task(() => Promise.resolve());
 			equal(task.status, TaskStatus.Created);
 		});
 
-		it("should be `TaskStatus.error` if the task has errored", async () => {
+		it("should be `TaskStatus.Faulted` if the task has errored", async () => {
 			const task = new Task(() => Promise.reject(Error("failure")));
 			await task.run();
 			equal(task.status, TaskStatus.Faulted);
 		});
 
-		it("should be `TaskStatus.complete` if the task has completed", async () => {
+		it("should be `TaskStatus.RanToCompletion` if the task has completed successfully", async () => {
 			const task = new Task(() => Promise.resolve());
 			await task.run();
 			equal(task.status, TaskStatus.RanToCompletion);
@@ -53,13 +53,13 @@ describe("Task", () => {
 		it("should return `undefined` if the task has errored", async () => {
 			const task = new Task(() => Promise.reject(Error("failure")));
 			await task.run();
-			assert.isUndefined(task.value);
+			assert.isUndefined(task.result);
 		});
 
-		it("should return the value if the task has completed", async () => {
+		it("should return the value if the task has completed successfully", async () => {
 			const task = new Task(() => Promise.resolve("success"));
 			await task.run();
-			equal(task.value, "success");
+			equal(task.result, "success");
 		});
 	});
 
@@ -67,7 +67,7 @@ describe("Task", () => {
 		it("should return `undefined` if the task has errored", async () =>
 			assert.isUndefined(await new Task(() => Promise.reject(Error("failure"))).run()));
 
-		it("should return the value if the task has completed", async () =>
+		it("should return the value if the task has completed successfully", async () =>
 			equal(await new Task(() => Promise.resolve("success")).run(), "success"));
 	});
 });

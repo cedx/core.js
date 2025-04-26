@@ -2,7 +2,7 @@ import "./Caching/MemoryCacheTest.js";
 import "./Data/PaginationTest.js";
 import "./Data/SortTest.js";
 import "./DependencyInjection/ContainerTest.js";
-import "./Globalization/RegionTest.js";
+import "./Globalization/RegionInfoTest.js";
 import "./Net/IPAddressTest.js";
 import "./Net/MailAddressTest.js";
 import "./Net/PhoneNumberTest.js";
