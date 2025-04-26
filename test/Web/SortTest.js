@@ -96,12 +96,12 @@ describe("Sort", () => {
 
 	describe("get()", () => {
 		const sort = Sort.of("foo");
-		it("should return the corresponding order for an existing entry", () => equal(sort.get("foo"), SortDirection.Ascending));
+		it("should return the corresponding direction for an existing entry", () => equal(sort.get("foo"), SortDirection.Ascending));
 		it("should return `null` for an unknown entry", () => assert.isNull(sort.get("bar")));
 	});
 
 	describe("getIcon()", () => {
-		it("should return the icon corresponding to the sort order", () => {
+		it("should return the icon corresponding to the sort direction", () => {
 			equal(Sort.of("foo").getIcon("foo"), "arrow_upward");
 			equal(Sort.of("foo", SortDirection.Descending).getIcon("foo"), "arrow_downward");
 			equal(new Sort().getIcon("foo"), "swap_vert");
@@ -129,10 +129,10 @@ describe("Sort", () => {
 		it("should return an empty sort for an empty string", () =>
 			isEmpty(Array.from(Sort.parse(""))));
 
-		it("should return an ascending order for an attribute without prefix", () =>
+		it("should return an ascending direction for a property without prefix", () =>
 			deepEqual(Array.from(Sort.parse("foo")), [["foo", SortDirection.Ascending]]));
 
-		it("should return a descending order for an attribute with a '-' prefix", () =>
+		it("should return a descending direction for a property with a '-' prefix", () =>
 			deepEqual(Array.from(Sort.parse("foo,-bar")), [["foo", SortDirection.Ascending], ["bar", SortDirection.Descending]]));
 	});
 
@@ -155,14 +155,14 @@ describe("Sort", () => {
 
 		it("should return `true` if there is nothing to satisfy", () => {
 			assert.isTrue(sort.satisfies());
-			assert.isTrue(new Sort().satisfies({attributes: ["foo"]}));
+			assert.isTrue(new Sort().satisfies({properties: ["foo"]}));
 		});
 
 		it("should return `true` if the conditions are satisfied", () =>
-			assert.isTrue(sort.satisfies({attributes: ["bar", "foo"], min: 1, max: 2})));
+			assert.isTrue(sort.satisfies({properties: ["bar", "foo"], min: 1, max: 2})));
 
 		it("should return `false` if the conditions are not satisfied", () => {
-			assert.isFalse(sort.satisfies({attributes: ["baz"]}));
+			assert.isFalse(sort.satisfies({properties: ["baz"]}));
 			assert.isFalse(sort.satisfies({max: 1}));
 		});
 	});
@@ -170,10 +170,10 @@ describe("Sort", () => {
 	describe("set()", () => {
 		const sort = new Sort;
 
-		it("should append a new entry when setting an unknown attribute", () =>
+		it("should append a new entry when setting an unknown property", () =>
 			deepEqual(Array.from(sort.set("foo", SortDirection.Ascending)), [["foo", SortDirection.Ascending]]));
 
-		it("should keep the order of entries when setting a known attribute", () =>
+		it("should keep the order of entries when setting a known property", () =>
 			deepEqual(Array.from(sort.set("bar", SortDirection.Ascending).set("foo", SortDirection.Descending)), [["foo", SortDirection.Descending], ["bar", SortDirection.Ascending]]));
 	});
 
@@ -181,13 +181,13 @@ describe("Sort", () => {
 		it("should return an empty string for an empty sort", () =>
 			isEmpty(new Sort().toSql()));
 
-		it("should return the attribute with an 'ASC' suffix for an ascending order", () =>
+		it("should return the property with an 'ASC' suffix for an ascending direction", () =>
 			equal(Sort.of("foo").toSql(), "foo ASC"));
 
-		it("should return the attribute with a 'DESC' suffix for a descending order", () =>
+		it("should return the property with a 'DESC' suffix for a descending direction", () =>
 			equal(new Sort([["foo", SortDirection.Ascending], ["bar", SortDirection.Descending]]).toSql(), "foo ASC, bar DESC"));
 
-		it("should allow custom escaping of attributes", () => {
+		it("should allow custom escaping of properties", () => {
 			const sort = new Sort([["foo", SortDirection.Ascending], ["bar", SortDirection.Descending]]);
 			equal(sort.toSql((/** @type {string} */ value) => `[${value}]`), "[foo] ASC, [bar] DESC");
 		});
@@ -197,10 +197,10 @@ describe("Sort", () => {
 		it("should return an empty string for an empty sort", () =>
 			isEmpty(String(new Sort)));
 
-		it("should return the attribute for an ascending order", () =>
+		it("should return the property for an ascending direction", () =>
 			equal(String(Sort.of("foo")), "foo"));
 
-		it("should return the attribute with a '-' prefix for a descending order", () =>
+		it("should return the property with a '-' prefix for a descending direction", () =>
 			equal(String(new Sort([["foo", SortDirection.Ascending], ["bar", SortDirection.Descending]])), "foo,-bar"));
 	});
 });

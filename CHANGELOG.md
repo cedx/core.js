@@ -6,6 +6,7 @@
 - Renamed the `Cache` and `CacheSerializer` interfaces to `ICache` and `ICacheSerializer`.
 - Renamed the `Pagination` class to `PaginationState`.
 - Renamed the `Region` class to `RegionInfo`.
+- Renamed the `SortEntry` type to `SortedProperty`.
 - Renamed the `SortOrder` enumeration to `SortDirection`.
 - Renamed the `Task.value` property to `result`.
 - Renamed the values of the `TaskStatus` enumeration.
