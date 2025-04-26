@@ -1,6 +1,7 @@
 # Changelog
 
-## Version [3.4.0](https://github.com/cedx/core.js/compare/v3.3.0...v3.4.0)
+## Version [3.3.0](https://github.com/cedx/core.js/compare/v3.2.0...v3.3.0)
+- Removed the `DateRange` class.
 - Removed the `setState()` middleware.
 - Renamed the `Async` module to `Threading`.
 - Renamed the `Cache` and `CacheSerializer` interfaces to `ICache` and `ICacheSerializer`.
@@ -14,9 +15,6 @@
 - Moved the `PaginationState` and `Sort` classes to the `Web` module.
 - Added the `ICache.getOrCreate()` method.
 - Added the `isCompleted`, `isCompletedSuccessfully` and `isFaulted` properties to the `Task` class.
-
-## Version [3.3.0](https://github.com/cedx/core.js/compare/v3.2.0...v3.3.0)
-- Removed the `DateRange` class.
 
 ## Version [3.2.0](https://github.com/cedx/core.js/compare/v3.1.0...v3.2.0)
 - Renamed the `DI` module to `DependencyInjection`.
