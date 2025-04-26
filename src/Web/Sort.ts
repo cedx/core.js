@@ -1,12 +1,7 @@
 /**
- * Represents an attribute/order pair of a sort.
- */
-export type SortEntry = [string, SortOrder];
-
-/**
  * Specifies the order of a sort parameter.
  */
-export const SortOrder = Object.freeze({
+export const SortDirection = Object.freeze({
 
 	/**
 	 * The sort is ascending.
@@ -22,7 +17,12 @@ export const SortOrder = Object.freeze({
 /**
  * Specifies the order of a sort parameter.
  */
-export type SortOrder = typeof SortOrder[keyof typeof SortOrder];
+export type SortDirection = typeof SortDirection[keyof typeof SortDirection];
+
+/**
+ * Represents an attribute/order pair of a sort.
+ */
+export type SortEntry = [string, SortDirection];
 
 /**
  * Represents information relevant to the sorting of data items.
@@ -55,7 +55,7 @@ export class Sort {
 	 * @param order THe sort order.
 	 * @returns The sort corresponding to the attribute and order.
 	 */
-	static of(attribute: string, order: SortOrder = SortOrder.Ascending): Sort {
+	static of(attribute: string, order: SortDirection = SortDirection.Ascending): Sort {
 		return new this([[attribute, order]]);
 	}
 
@@ -66,8 +66,8 @@ export class Sort {
 	 */
 	static parse(value: string): Sort {
 		return new this((value ? value.split(",") : []).map(item => {
-			const order = item.startsWith("-") ? SortOrder.Descending : SortOrder.Ascending;
-			return [order == SortOrder.Ascending ? item : item.slice(1), order];
+			const order = item.startsWith("-") ? SortDirection.Descending : SortDirection.Ascending;
+			return [order == SortDirection.Ascending ? item : item.slice(1), order];
 		}));
 	}
 
@@ -85,7 +85,7 @@ export class Sort {
 	 * @param order The sort order.
 	 * @returns This instance.
 	 */
-	append(attribute: string, order: SortOrder): this {
+	append(attribute: string, order: SortDirection): this {
 		this.delete(attribute);
 		this.#attributes.push([attribute, order]);
 		return this;
@@ -111,7 +111,7 @@ export class Sort {
 			const xAttr = Reflect.get(x, attribute); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
 			const yAttr = Reflect.get(y, attribute); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
 			const value = xAttr > yAttr ? 1 : (xAttr < yAttr ? -1 : 0);
-			if (value) return order == SortOrder.Ascending ? value : -value;
+			if (value) return order == SortDirection.Ascending ? value : -value;
 		}
 
 		return 0;
@@ -130,7 +130,7 @@ export class Sort {
 	 * @param attribute The attribute name.
 	 * @returns The order associated with the specified attribute, or `null` if the attribute doesn't exist.
 	 */
-	get(attribute: string): SortOrder|null {
+	get(attribute: string): SortDirection|null {
 		for (const [key, order] of this.#attributes) if (key == attribute) return order;
 		return null;
 	}
@@ -142,8 +142,8 @@ export class Sort {
 	 */
 	getIcon(attribute: string): string {
 		switch (this.get(attribute)) {
-			case SortOrder.Ascending: return "arrow_upward";
-			case SortOrder.Descending: return "arrow_downward";
+			case SortDirection.Ascending: return "arrow_upward";
+			case SortDirection.Descending: return "arrow_downward";
 			default: return "swap_vert";
 		}
 	}
@@ -173,7 +173,7 @@ export class Sort {
 	 * @param order The sort order.
 	 * @returns This instance.
 	 */
-	prepend(attribute: string, order: SortOrder): this {
+	prepend(attribute: string, order: SortDirection): this {
 		this.delete(attribute);
 		this.#attributes.unshift([attribute, order]);
 		return this;
@@ -201,7 +201,7 @@ export class Sort {
 	 * @param order The sort order.
 	 * @returns This instance.
 	 */
-	set(attribute: string, order: SortOrder): this {
+	set(attribute: string, order: SortDirection): this {
 		for (const [index, [key]] of this.#attributes.entries()) if (key == attribute) {
 			this.#attributes[index] = [key, order];
 			return this;
@@ -232,6 +232,6 @@ export class Sort {
 	 * @returns The string representation of this object.
 	 */
 	toString(): string {
-		return this.#attributes.map(([attribute, order]) => `${order == SortOrder.Descending ? "-" : ""}${attribute}`).join();
+		return this.#attributes.map(([attribute, order]) => `${order == SortDirection.Descending ? "-" : ""}${attribute}`).join();
 	}
 }

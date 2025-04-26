@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import {Sort, SortOrder} from "@cedx/core/Web/Sort.js";
+import {Sort, SortDirection} from "@cedx/core/Web/Sort.js";
 import {assert} from "chai";
 
 /**
@@ -14,8 +14,8 @@ describe("Sort", () => {
 
 		it("should increment when adding an entry", () => {
 			lengthOf(sort, 0);
-			lengthOf(sort.append("foo", SortOrder.Ascending), 1);
-			lengthOf(sort.append("bar", SortOrder.Descending), 2);
+			lengthOf(sort.append("foo", SortDirection.Ascending), 1);
+			lengthOf(sort.append("bar", SortDirection.Descending), 2);
 		});
 
 		it("should decrement when removing an entry", () => {
@@ -31,13 +31,13 @@ describe("Sort", () => {
 		});
 
 		it("should iterate over the entries if the sort is not empty", () => {
-			const iterator = Sort.of("foo").prepend("bar", SortOrder.Descending)[Symbol.iterator]();
+			const iterator = Sort.of("foo").prepend("bar", SortDirection.Descending)[Symbol.iterator]();
 			let next = iterator.next();
 			assert.isTrue(!next.done);
-			deepEqual(next.value, ["bar", SortOrder.Descending]);
+			deepEqual(next.value, ["bar", SortDirection.Descending]);
 			next = iterator.next();
 			assert.isFalse(next.done);
-			deepEqual(next.value, ["foo", SortOrder.Ascending]);
+			deepEqual(next.value, ["foo", SortDirection.Ascending]);
 			assert.isTrue(iterator.next().done);
 		});
 	});
@@ -46,19 +46,19 @@ describe("Sort", () => {
 		const sort = Sort.of("foo");
 
 		it("should append a new entry to the end", () => {
-			sort.append("bar", SortOrder.Ascending);
-			deepEqual(Array.from(sort), [["foo", SortOrder.Ascending], ["bar", SortOrder.Ascending]]);
+			sort.append("bar", SortDirection.Ascending);
+			deepEqual(Array.from(sort), [["foo", SortDirection.Ascending], ["bar", SortDirection.Ascending]]);
 		});
 
 		it("should move an existing entry to the end and update its value", () => {
-			sort.append("foo", SortOrder.Descending);
-			deepEqual(Array.from(sort), [["bar", SortOrder.Ascending], ["foo", SortOrder.Descending]]);
+			sort.append("foo", SortDirection.Descending);
+			deepEqual(Array.from(sort), [["bar", SortDirection.Ascending], ["foo", SortDirection.Descending]]);
 		});
 	});
 
 	describe("at()", () => {
 		const sort = Sort.of("foo");
-		it("should return the entry at the specified index", () => deepEqual(sort.at(0), ["foo", SortOrder.Ascending]));
+		it("should return the entry at the specified index", () => deepEqual(sort.at(0), ["foo", SortDirection.Ascending]));
 		it("should return `null` for an unknown entry", () => assert.isNull(sort.at(1)));
 	});
 
@@ -68,27 +68,27 @@ describe("Sort", () => {
 
 		it("should return zero if the two objects are considered equal", () => {
 			equal(Sort.of("type").compare(x, y), 0);
-			equal(Sort.of("type", SortOrder.Descending).compare(x, y), 0);
+			equal(Sort.of("type", SortDirection.Descending).compare(x, y), 0);
 		});
 
 		it("should return a negative number if the first object is before the second", () => {
 			isBelow(Sort.of("index").compare(x, y), 0);
 			isBelow(Sort.of("name").compare(x, y), 0);
-			isBelow(new Sort([["type", SortOrder.Ascending], ["index", SortOrder.Ascending]]).compare(x, y), 0);
+			isBelow(new Sort([["type", SortDirection.Ascending], ["index", SortDirection.Ascending]]).compare(x, y), 0);
 		});
 
 		it("should return a positive number if the first object is after the second", () => {
-			isAbove(Sort.of("index", SortOrder.Descending).compare(x, y), 0);
-			isAbove(Sort.of("name", SortOrder.Descending).compare(x, y), 0);
-			isAbove(new Sort([["type", SortOrder.Descending], ["index", SortOrder.Descending]]).compare(x, y), 0);
+			isAbove(Sort.of("index", SortDirection.Descending).compare(x, y), 0);
+			isAbove(Sort.of("name", SortDirection.Descending).compare(x, y), 0);
+			isAbove(new Sort([["type", SortDirection.Descending], ["index", SortDirection.Descending]]).compare(x, y), 0);
 		});
 	});
 
 	describe("delete()", () => {
 		it("should properly remove entries", () => {
-			const sort = new Sort([["foo", SortOrder.Ascending], ["bar", SortOrder.Descending]]);
+			const sort = new Sort([["foo", SortDirection.Ascending], ["bar", SortDirection.Descending]]);
 			sort.delete("foo");
-			deepEqual(Array.from(sort), [["bar", SortOrder.Descending]]);
+			deepEqual(Array.from(sort), [["bar", SortDirection.Descending]]);
 			sort.delete("bar");
 			isEmpty(Array.from(sort));
 		});
@@ -96,14 +96,14 @@ describe("Sort", () => {
 
 	describe("get()", () => {
 		const sort = Sort.of("foo");
-		it("should return the corresponding order for an existing entry", () => equal(sort.get("foo"), SortOrder.Ascending));
+		it("should return the corresponding order for an existing entry", () => equal(sort.get("foo"), SortDirection.Ascending));
 		it("should return `null` for an unknown entry", () => assert.isNull(sort.get("bar")));
 	});
 
 	describe("getIcon()", () => {
 		it("should return the icon corresponding to the sort order", () => {
 			equal(Sort.of("foo").getIcon("foo"), "arrow_upward");
-			equal(Sort.of("foo", SortOrder.Descending).getIcon("foo"), "arrow_downward");
+			equal(Sort.of("foo", SortDirection.Descending).getIcon("foo"), "arrow_downward");
 			equal(new Sort().getIcon("foo"), "swap_vert");
 		});
 	});
@@ -115,7 +115,7 @@ describe("Sort", () => {
 	});
 
 	describe("indexOf()", () => {
-		const sort = new Sort([["foo", SortOrder.Ascending], ["bar", SortOrder.Descending]]);
+		const sort = new Sort([["foo", SortDirection.Ascending], ["bar", SortDirection.Descending]]);
 
 		it("should return the index of an existing entry", () => {
 			equal(sort.indexOf("foo"), 0);
@@ -130,28 +130,28 @@ describe("Sort", () => {
 			isEmpty(Array.from(Sort.parse(""))));
 
 		it("should return an ascending order for an attribute without prefix", () =>
-			deepEqual(Array.from(Sort.parse("foo")), [["foo", SortOrder.Ascending]]));
+			deepEqual(Array.from(Sort.parse("foo")), [["foo", SortDirection.Ascending]]));
 
 		it("should return a descending order for an attribute with a '-' prefix", () =>
-			deepEqual(Array.from(Sort.parse("foo,-bar")), [["foo", SortOrder.Ascending], ["bar", SortOrder.Descending]]));
+			deepEqual(Array.from(Sort.parse("foo,-bar")), [["foo", SortDirection.Ascending], ["bar", SortDirection.Descending]]));
 	});
 
 	describe("prepend()", () => {
 		const sort = Sort.of("foo");
 
 		it("should prepend a new entry to the start", () => {
-			sort.prepend("bar", SortOrder.Ascending);
-			deepEqual(Array.from(sort), [["bar", SortOrder.Ascending], ["foo", SortOrder.Ascending]]);
+			sort.prepend("bar", SortDirection.Ascending);
+			deepEqual(Array.from(sort), [["bar", SortDirection.Ascending], ["foo", SortDirection.Ascending]]);
 		});
 
 		it("should move an existing entry to the start and update its value", () => {
-			sort.prepend("foo", SortOrder.Descending);
-			deepEqual(Array.from(sort), [["foo", SortOrder.Descending], ["bar", SortOrder.Ascending]]);
+			sort.prepend("foo", SortDirection.Descending);
+			deepEqual(Array.from(sort), [["foo", SortDirection.Descending], ["bar", SortDirection.Ascending]]);
 		});
 	});
 
 	describe("satisfies()", () => {
-		const sort = new Sort([["foo", SortOrder.Ascending], ["bar", SortOrder.Descending]]);
+		const sort = new Sort([["foo", SortDirection.Ascending], ["bar", SortDirection.Descending]]);
 
 		it("should return `true` if there is nothing to satisfy", () => {
 			assert.isTrue(sort.satisfies());
@@ -171,10 +171,10 @@ describe("Sort", () => {
 		const sort = new Sort;
 
 		it("should append a new entry when setting an unknown attribute", () =>
-			deepEqual(Array.from(sort.set("foo", SortOrder.Ascending)), [["foo", SortOrder.Ascending]]));
+			deepEqual(Array.from(sort.set("foo", SortDirection.Ascending)), [["foo", SortDirection.Ascending]]));
 
 		it("should keep the order of entries when setting a known attribute", () =>
-			deepEqual(Array.from(sort.set("bar", SortOrder.Ascending).set("foo", SortOrder.Descending)), [["foo", SortOrder.Descending], ["bar", SortOrder.Ascending]]));
+			deepEqual(Array.from(sort.set("bar", SortDirection.Ascending).set("foo", SortDirection.Descending)), [["foo", SortDirection.Descending], ["bar", SortDirection.Ascending]]));
 	});
 
 	describe("toSql()", () => {
@@ -185,10 +185,10 @@ describe("Sort", () => {
 			equal(Sort.of("foo").toSql(), "foo ASC"));
 
 		it("should return the attribute with a 'DESC' suffix for a descending order", () =>
-			equal(new Sort([["foo", SortOrder.Ascending], ["bar", SortOrder.Descending]]).toSql(), "foo ASC, bar DESC"));
+			equal(new Sort([["foo", SortDirection.Ascending], ["bar", SortDirection.Descending]]).toSql(), "foo ASC, bar DESC"));
 
 		it("should allow custom escaping of attributes", () => {
-			const sort = new Sort([["foo", SortOrder.Ascending], ["bar", SortOrder.Descending]]);
+			const sort = new Sort([["foo", SortDirection.Ascending], ["bar", SortDirection.Descending]]);
 			equal(sort.toSql((/** @type {string} */ value) => `[${value}]`), "[foo] ASC, [bar] DESC");
 		});
 	});
@@ -201,6 +201,6 @@ describe("Sort", () => {
 			equal(String(Sort.of("foo")), "foo"));
 
 		it("should return the attribute with a '-' prefix for a descending order", () =>
-			equal(String(new Sort([["foo", SortOrder.Ascending], ["bar", SortOrder.Descending]])), "foo,-bar"));
+			equal(String(new Sort([["foo", SortDirection.Ascending], ["bar", SortDirection.Descending]])), "foo,-bar"));
 	});
 });
