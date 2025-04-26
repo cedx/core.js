@@ -2,6 +2,7 @@
 
 ## Version [3.4.0](https://github.com/cedx/core.js/compare/v3.3.0...v3.4.0)
 - Renamed the `Cache` and `CacheSerializer` interfaces to `ICache` and `ICacheSerializer`.
+- Added the `ICache.getOrCreate()` method.
 
 ## Version [3.3.0](https://github.com/cedx/core.js/compare/v3.2.0...v3.3.0)
 - Removed the `DateRange` class.

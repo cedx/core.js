@@ -74,6 +74,18 @@ export class FileCache implements ICache {
 	}
 
 	/**
+	 * Gets the value associated with the specified key if it exists, or generates a new entry using the value from the given factory.
+	 * @param key The cache key.
+	 * @param factory The factory that creates the value if the key does not exist in the cache.
+	 * @param duration The number of seconds in which the cached value will expire.
+	 * @returns The cached value.
+	 */
+	async getOrCreate<T>(key: string, factory: () => Promise<T>, duration = -1): Promise<T> {
+		if (!await this.has(key)) this.set(key, await factory(), duration);
+		return (await this.get(key))!;
+	}
+
+	/**
 	 * Gets a value indicating whether this cache contains the specified key.
 	 * @param key The cache key.
 	 * @returns `true` if this cache contains the specified key, otherwise `false`.

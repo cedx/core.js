@@ -24,6 +24,15 @@ export interface ICache {
 	get: <T>(key: string) => Promise<T|null>;
 
 	/**
+	 * Gets the value associated with the specified key if it exists, or generates a new entry using the value from the given factory.
+	 * @param key The cache key.
+	 * @param factory The factory that creates the value if the key does not exist in the cache.
+	 * @param duration The number of seconds in which the cached value will expire.
+	 * @returns The cached value.
+	 */
+	getOrCreate: <T>(key: string, factory: () => Promise<T>, duration?: number) => Promise<T>;
+
+	/**
 	 * Gets a value indicating whether this cache contains the specified key.
 	 * @param key The cache key.
 	 * @returns `true` if this cache contains the specified key, otherwise `false`.
