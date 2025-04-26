@@ -13,10 +13,10 @@
 		"useDefineForClassFields": false
 	},
 	"references": [
+		{"path": "../Base/tsconfig.json"},
 		{"path": "../Data/tsconfig.json"},
 		{"path": "../Html/tsconfig.json"},
 		{"path": "../Net/Http/tsconfig.json"},
-		{"path": "../Util/tsconfig.json"},
 		{"path": "../Web/tsconfig.json"}
 	]
 }

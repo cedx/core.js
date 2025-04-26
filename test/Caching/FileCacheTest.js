@@ -1,5 +1,5 @@
 import {FileCache} from "@cedx/core/Caching/FileCache.js";
-import {Duration} from "@cedx/core/Util/Duration.js";
+import {Duration} from "@cedx/core/Duration.js";
 import {assert} from "chai";
 import {mkdir, rm} from "node:fs/promises";
 import {setTimeout} from "node:timers/promises";

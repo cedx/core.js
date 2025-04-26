@@ -1,3 +1,6 @@
+import "./DateTest.js";
+import "./NumberTest.js";
+import "./StringTest.js";
 import "./Caching/MemoryCacheTest.js";
 import "./DependencyInjection/ContainerTest.js";
 import "./Globalization/RegionInfoTest.js";
@@ -6,8 +9,5 @@ import "./Net/MailAddressTest.js";
 import "./Net/PhoneNumberTest.js";
 import "./Security/AccessLevelTest.js";
 import "./Threading/TaskTest.js";
-import "./Util/DateTest.js";
-import "./Util/NumberTest.js";
-import "./Util/StringTest.js";
 import "./Web/PaginationStateTest.js";
 import "./Web/SortStateTest.js";

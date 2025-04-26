@@ -11,6 +11,6 @@
 		"tsBuildInfoFile": "../../var/Net.tsbuildinfo"
 	},
 	"references": [
-		{"path": "../Util/tsconfig.json"}
+		{"path": "../Base/tsconfig.json"}
 	]
 }

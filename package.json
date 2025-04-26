@@ -44,10 +44,10 @@
 		"src/"
 	],
 	"imports": {
+		"#Base/*.js": "./lib/*.js",
 		"#Data/*.js": "./lib/Data/*.js",
 		"#Html/*.js": "./lib/Html/*.js",
 		"#Net/*.js": "./lib/Net/*.js",
-		"#Util/*.js": "./lib/Util/*.js",
 		"#Web/*.js": "./lib/Web/*.js"
 	},
 	"keywords": [

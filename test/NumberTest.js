@@ -1,4 +1,4 @@
-import {round} from "@cedx/core/Util/Number.js";
+import {round} from "@cedx/core/Number.js";
 import {assert} from "chai";
 
 /**

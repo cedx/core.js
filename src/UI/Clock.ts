@@ -1,4 +1,4 @@
-import {Duration} from "#Util/Duration.js";
+import {Duration} from "#Base/Duration.js";
 import type {ReactiveControllerHost} from "lit";
 
 /**
