@@ -1,4 +1,4 @@
-import {Task, TaskStatus} from "@cedx/core/Async/Task.js";
+import {Task, TaskStatus} from "@cedx/core/Threading/Task.js";
 import {assert} from "chai";
 
 /**

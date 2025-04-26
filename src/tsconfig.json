@@ -1,7 +1,6 @@
 {
 	"files": [],
 	"references": [
-		{"path": "Async/tsconfig.json"},
 		{"path": "Caching/tsconfig.json"},
 		{"path": "Data/tsconfig.json"},
 		{"path": "DependencyInjection/tsconfig.json"},
@@ -11,6 +10,7 @@
 		{"path": "IO/tsconfig.json"},
 		{"path": "Net/tsconfig.json"},
 		{"path": "Security/tsconfig.json"},
+		{"path": "Threading/tsconfig.json"},
 		{"path": "UI/tsconfig.json"},
 		{"path": "Util/tsconfig.json"}
 	]

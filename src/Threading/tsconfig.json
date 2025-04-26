@@ -6,8 +6,8 @@
 		"declaration": true,
 		"declarationMap": true,
 		"noEmit": false,
-		"outDir": "../../lib/Async",
+		"outDir": "../../lib/Threading",
 		"rootDir": ".",
-		"tsBuildInfoFile": "../../var/Async.tsbuildinfo"
+		"tsBuildInfoFile": "../../var/Threading.tsbuildinfo"
 	}
 }

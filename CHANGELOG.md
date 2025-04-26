@@ -1,6 +1,7 @@
 # Changelog
 
 ## Version [3.4.0](https://github.com/cedx/core.js/compare/v3.3.0...v3.4.0)
+- Renamed the `Async` module to `Threading`.
 - Renamed the `Cache` and `CacheSerializer` interfaces to `ICache` and `ICacheSerializer`.
 - Added the `ICache.getOrCreate()` method.
 
