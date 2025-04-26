@@ -1,5 +1,11 @@
 # Changelog
 
+## Version [3.4.0](https://github.com/cedx/core.js/compare/v3.3.0...v3.4.0)
+- Renamed the `Http` module to `Net.Http`.
+- Renamed the `Http.Client` class to `HttpClient`.
+- Renamed the `Http.Error` class to `HttpError`.
+- Renamed the `Http.Status` enumeration to `StatusCodes`.
+
 ## Version [3.3.0](https://github.com/cedx/core.js/compare/v3.2.0...v3.3.0)
 - Removed the `DateRange` class.
 - Removed the `setState()` middleware.
