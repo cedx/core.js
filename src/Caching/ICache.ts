@@ -1,7 +1,7 @@
 /**
  * Represents a cache.
  */
-export interface Cache { // eslint-disable-line @typescript-eslint/consistent-type-definitions
+export interface ICache {
 
 	/**
 	 * Removes all entries from this cache.
@@ -41,30 +41,9 @@ export interface Cache { // eslint-disable-line @typescript-eslint/consistent-ty
 }
 
 /**
- * Defines the options of a {@link Cache} instance.
- */
-export type CacheOptions = Partial<{
-
-	/**
-	 * The default duration in seconds before a cache entry will expire.
-	 */
-	defaultDuration: number;
-
-	/**
-	 * A string prefixed to every cache key so that it is unique globally in the whole cache storage.
-	 */
-	keyPrefix: string;
-
-	/**
-	 * The instance used to serialize and unserialize cached data.
-	 */
-	serializer: CacheSerializer;
-}>;
-
-/**
  * A cache serializer.
  */
-export type CacheSerializer = {
+export interface ICacheSerializer {
 
 	/**
 	 * Serializes the specified value.

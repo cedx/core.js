@@ -2,12 +2,12 @@ import {Duration} from "#Util/Duration.js";
 import {hash} from "node:crypto";
 import {readdir, readFile, stat, unlink, utimes, writeFile} from "node:fs/promises";
 import {join} from "node:path";
-import type {Cache, CacheOptions, CacheSerializer} from "./Cache.js";
+import type {ICache, ICacheSerializer} from "./ICache.js";
 
 /**
  * Implements a cache using files.
  */
-export class FileCache implements Cache {
+export class FileCache implements ICache {
 
 	/**
 	 * The path of the directory to store cache files.
@@ -32,7 +32,7 @@ export class FileCache implements Cache {
 	/**
 	 * The instance used to serialize and unserialize cached data.
 	 */
-	readonly #serializer: CacheSerializer;
+	readonly #serializer: ICacheSerializer;
 
 	/**
 	 * Creates a new file cache.
@@ -129,10 +129,25 @@ export class FileCache implements Cache {
 /**
  * Defines the options of a {@link FileCache} instance.
  */
-export type FileCacheOptions = CacheOptions & Partial<{
+export type FileCacheOptions = Partial<{
+
+	/**
+	 * The default duration in seconds before a cache entry will expire.
+	 */
+	defaultDuration: number;
 
 	/**
 	 * The cache file suffix.
 	 */
 	fileSuffix: string;
+
+	/**
+	 * A string prefixed to every cache key so that it is unique globally in the whole cache storage.
+	 */
+	keyPrefix: string;
+
+	/**
+	 * The instance used to serialize and unserialize cached data.
+	 */
+	serializer: ICacheSerializer;
 }>;

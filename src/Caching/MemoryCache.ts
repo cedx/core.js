@@ -1,10 +1,10 @@
 import {Duration} from "#Util/Duration.js";
-import type {Cache, CacheOptions, CacheSerializer} from "./Cache.js";
+import type {ICache, ICacheSerializer} from "./ICache.js";
 
 /**
  * Implements an in-memory cache.
  */
-export class MemoryCache implements Cache {
+export class MemoryCache implements ICache {
 
 	/**
 	 * The cache data.
@@ -24,13 +24,13 @@ export class MemoryCache implements Cache {
 	/**
 	 * The instance used to serialize and unserialize cached data.
 	 */
-	readonly #serializer: CacheSerializer;
+	readonly #serializer: ICacheSerializer;
 
 	/**
 	 * Creates a new memory service.
 	 * @param options An object providing values to initialize this instance.
 	 */
-	constructor(options: CacheOptions = {}) {
+	constructor(options: MemoryCacheOptions = {}) {
 		this.#defaultDuration = options.defaultDuration ?? 0;
 		this.#keyPrefix = options.keyPrefix ?? "";
 		this.#serializer = options.serializer ?? {serialize: JSON.stringify, unserialize: JSON.parse};
@@ -119,7 +119,7 @@ export class MemoryCache implements Cache {
 /**
  * An in-memory cache value.
  */
-export type MemoryCacheEntry = {
+export interface MemoryCacheEntry {
 
 	/**
 	 * The expiration date and time.
@@ -131,3 +131,24 @@ export type MemoryCacheEntry = {
 	 */
 	value: string;
 };
+
+/**
+ * Defines the options of a {@link MemoryCache} instance.
+ */
+export type MemoryCacheOptions = Partial<{
+
+	/**
+	 * The default duration in seconds before a cache entry will expire.
+	 */
+	defaultDuration: number;
+
+	/**
+	 * A string prefixed to every cache key so that it is unique globally in the whole cache storage.
+	 */
+	keyPrefix: string;
+
+	/**
+	 * The instance used to serialize and unserialize cached data.
+	 */
+	serializer: ICacheSerializer;
+}>;
