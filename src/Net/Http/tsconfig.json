@@ -1,16 +1,16 @@
 {
-	"extends": "../../tsconfig.json",
+	"extends": "../../../tsconfig.json",
 	"include": ["**/*.ts"],
 	"compilerOptions": {
 		"composite": true,
 		"declaration": true,
 		"declarationMap": true,
 		"noEmit": false,
-		"outDir": "../../lib/Caching",
+		"outDir": "../../../lib/Net/Http",
 		"rootDir": ".",
-		"tsBuildInfoFile": "../../var/Caching.tsbuildinfo"
+		"tsBuildInfoFile": "../../../var/Net.Http.tsbuildinfo"
 	},
 	"references": [
-		{"path": "../Util/tsconfig.json"}
+		{"path": "../../Util/tsconfig.json"}
 	]
 }

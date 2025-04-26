@@ -1,5 +1,5 @@
 import type {ViewportScroller} from "#Html/ViewportScroller.js";
-import {Status} from "#Http/Status.js";
+import {StatusCodes} from "#Net/Http/StatusCodes.js";
 import {Router as LitRouter, type BaseRouteConfig, type RouteConfig} from "@lit-labs/router";
 import {Tooltip} from "bootstrap";
 import {html, type ReactiveControllerHost} from "lit";
@@ -51,7 +51,7 @@ export class Router extends LitRouter {
 	 * @param options The router options.
 	 */
 	constructor(host: HTMLElement & ReactiveControllerHost, routes: RouteConfig[], options: RouterOptions = {}) {
-		super(host, routes, {fallback: options.fallback ?? {render: () => html`<error-handler status=${Status.NotFound}></error-handler>`}});
+		super(host, routes, {fallback: options.fallback ?? {render: () => html`<error-handler status=${StatusCodes.NotFound}></error-handler>`}});
 		const basePath = options.basePath ?? document.head.querySelector("base")?.getAttribute("href") ?? "";
 		this.#basePath = basePath.endsWith("/") ? basePath.slice(0, -1) : basePath;
 		this.#scroller = options.scroller ?? null;

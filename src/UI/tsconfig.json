@@ -1,6 +1,6 @@
 {
 	"extends": "../../tsconfig.json",
-	"include": ["*.ts"],
+	"include": ["**/*.ts"],
 	"compilerOptions": {
 		"composite": true,
 		"declaration": true,
@@ -15,7 +15,7 @@
 	"references": [
 		{"path": "../Data/tsconfig.json"},
 		{"path": "../Html/tsconfig.json"},
-		{"path": "../Http/tsconfig.json"},
+		{"path": "../Net/Http/tsconfig.json"},
 		{"path": "../Util/tsconfig.json"},
 		{"path": "../Web/tsconfig.json"}
 	]
