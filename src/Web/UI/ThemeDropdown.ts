@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import {Theme, themeIcon, themeLabel} from "#Html/Theme.js";
+import {Theme, themeIcon, themeLabel} from "#Web/Html/Theme.js";
 import {html, type TemplateResult} from "lit";
 import {customElement, property, state} from "lit/decorators.js";
 import {classMap} from "lit/directives/class-map.js";

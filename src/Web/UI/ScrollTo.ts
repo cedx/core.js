@@ -1,4 +1,4 @@
-import type {ViewportScroller} from "#Html/ViewportScroller.js";
+import type {ViewportScroller} from "#Web/Html/ViewportScroller.js";
 import {html, type TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {Component} from "./Component.js";

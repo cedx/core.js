@@ -1,4 +1,4 @@
-import {Variant} from "#Html/Variant.js";
+import {Variant} from "#Web/Html/Variant.js";
 import {Context, contextIcon} from "#Web/Context.js";
 import {html, type TemplateResult} from "lit";
 import {customElement, property, query, state} from "lit/decorators.js";

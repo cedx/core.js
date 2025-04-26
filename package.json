@@ -45,7 +45,6 @@
 	],
 	"imports": {
 		"#Base/*.js": "./lib/*.js",
-		"#Html/*.js": "./lib/Html/*.js",
 		"#Net/*.js": "./lib/Net/*.js",
 		"#Web/*.js": "./lib/Web/*.js"
 	},

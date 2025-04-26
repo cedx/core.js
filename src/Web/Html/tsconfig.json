@@ -1,16 +1,16 @@
 {
-	"extends": "../../tsconfig.json",
+	"extends": "../../../tsconfig.json",
 	"include": ["*.ts"],
 	"compilerOptions": {
 		"composite": true,
 		"declaration": true,
 		"declarationMap": true,
 		"noEmit": false,
-		"outDir": "../../lib/Html",
+		"outDir": "../../../lib/Web/Html",
 		"rootDir": ".",
-		"tsBuildInfoFile": "../../var/Html.tsbuildinfo"
+		"tsBuildInfoFile": "../../../var/Web.Html.tsbuildinfo"
 	},
 	"references": [
-		{"path": "../Base/tsconfig.json"}
+		{"path": "../../Base/tsconfig.json"}
 	]
 }
