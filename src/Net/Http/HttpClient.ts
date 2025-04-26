@@ -1,9 +1,9 @@
-import {Error} from "./Error.js"
+import {HttpError} from "./HttpError.js"
 
 /**
  * Performs HTTP requests.
  */
-export class Client {
+export class HttpClient {
 
 	/**
 	 * The base URL of the remote service.
@@ -94,7 +94,7 @@ export class Client {
 			loadingIndicator?.start();
 			const request = new Request(new URL(url, this.baseUrl), {...options, method, headers, body} as RequestInit);
 			const response = await fetch(request);
-			if (!response.ok) throw new Error(response);
+			if (!response.ok) throw new HttpError(response);
 			return response;
 		}
 		finally {
