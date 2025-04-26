@@ -1,4 +1,4 @@
-import {invalidControl, isFormControl, resetValidity, trimControl} from "@cedx/core/Html/Form.js";
+import {invalidControl, isFormControl, resetValidity, trimControl} from "@cedx/core/Web/Html/Form.js";
 import {assert} from "chai";
 
 /**

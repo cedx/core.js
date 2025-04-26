@@ -1,6 +1,6 @@
+import type {Context} from "#Web/Context.js";
 import {Size} from "#Web/Html/Size.js";
 import {Variant} from "#Web/Html/Variant.js";
-import type {Context} from "#Web/Context.js";
 import {html, type TemplateResult} from "lit";
 import {customElement, property} from "lit/decorators.js";
 import {classMap} from "lit/directives/class-map.js";

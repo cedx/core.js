@@ -1,6 +1,6 @@
-import {Component} from "./Component.js";
 import {html, type TemplateResult} from "lit";
 import {customElement} from "lit/decorators.js";
+import {Component} from "./Component.js";
 
 /**
  * An action bar located under the navigation bar.

@@ -1,7 +1,7 @@
-import {Component} from "./Component.js";
 import {html, type TemplateResult} from "lit";
 import {customElement, state} from "lit/decorators.js";
 import {when} from "lit/directives/when.js";
+import {Component} from "./Component.js";
 
 /**
  * A component that shows up when the network is unavailable, and hides when connectivity is restored.

@@ -1,4 +1,4 @@
 import "./Base.js";
-import "./Html/ElementTest.js";
-import "./Html/FileTest.js";
-import "./Html/FormTest.js";
+import "./Web/Html/ElementTest.js";
+import "./Web/Html/FileTest.js";
+import "./Web/Html/FormTest.js";
