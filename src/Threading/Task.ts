@@ -4,24 +4,24 @@
 export const TaskStatus = Object.freeze({
 
 	/**
-	 * The task has not been run.
+	 * The task has been initialized but has not yet been scheduled.
 	 */
-	Initial: 0,
+	Created: 0,
 
 	/**
-	 * The task is running and awaiting a new value.
+	 * The task is running but has not yet completed.
 	 */
-	Pending: 1,
+	Running: 1,
 
 	/**
-	 * The task completed successfully.
+	 * The task completed execution successfully.
 	 */
-	Complete: 2,
+	RanToCompletion: 2,
 
 	/**
-	 * The task errored.
+	 * The task completed due to an unhandled error.
 	 */
-	Error: 3
+	Faulted: 3
 });
 
 /**
@@ -37,7 +37,7 @@ export class Task<T> {
 	/**
 	 * The task status.
 	 */
-	status: TaskStatus = TaskStatus.Initial;
+	status: TaskStatus = TaskStatus.Created;
 
 	/**
 	 * The task result.
@@ -45,26 +45,26 @@ export class Task<T> {
 	#result?: Error|T;
 
 	/**
-	 * The task to perform.
+	 * The code to execute.
 	 */
 	readonly #task: (...args: any[]) => Promise<T>;
 
 	/**
 	 * Creates a new task.
-	 * @param task The task to perform.
+	 * @param task The code to execute in the task.
 	 */
 	constructor(task: (...args: any[]) => Promise<T>) {
 		this.#task = task;
 	}
 
 	/**
-	 * The current error of the task, if it has errored.
+	 * The error that caused this task to end prematurely, or `null` if the task completed successfully or has not yet thrown any errors.
 	 */
 	get error(): Error|null {
 		return this.#result instanceof Error ? this.#result : null;
 	}
 	set error(error: unknown) {
-		this.status = TaskStatus.Error;
+		this.status = TaskStatus.Faulted;
 		this.#result = error instanceof Error ? error : Error("The task failed.", {cause: error});
 	}
 
