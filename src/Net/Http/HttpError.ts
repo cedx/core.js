@@ -1,9 +1,9 @@
-import {Status} from "./Status.js";
+import {StatusCodes} from "./StatusCodes.js";
 
 /**
  * An object thrown when an HTTP error occurs.
  */
-export class Error extends globalThis.Error {
+export class HttpError extends globalThis.Error {
 
 	/**
 	 * The validation errors.
@@ -45,8 +45,8 @@ export class Error extends globalThis.Error {
 	/**
 	 * The response's status code.
 	 */
-	get status(): Status {
-		return this.cause.status as Status;
+	get status(): StatusCodes {
+		return this.cause.status as StatusCodes;
 	}
 
 	/**
@@ -64,7 +64,7 @@ export class Error extends globalThis.Error {
 	 */
 	async #parseValidationErrors(): Promise<Map<string, string>> {
 		try {
-			const statuses = new Set<Status>([Status.BadRequest, Status.UnprocessableContent]);
+			const statuses = new Set<StatusCodes>([StatusCodes.BadRequest, StatusCodes.UnprocessableContent]);
 			const ignoreBody = this.cause.bodyUsed || !statuses.has(this.status);
 			return new Map(ignoreBody ? [] : Object.entries(await this.cause.json() as Record<string, string>));
 		}
