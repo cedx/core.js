@@ -6,17 +6,17 @@ export const AccessLevel = Object.freeze({
 	/**
 	 * The read access.
 	 */
-	Read: "read",
+	Read: "Read",
 
 	/**
 	 * The write access.
 	 */
-	Write: "write",
+	Write: "Write",
 
 	/**
 	 * The administrator access.
 	 */
-	Admin: "admin"
+	Admin: "Admin"
 });
 
 /**

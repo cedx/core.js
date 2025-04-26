@@ -6,17 +6,17 @@ export const Theme = Object.freeze({
 	/**
 	 * The theme is light.
 	 */
-	Light: "light",
+	Light: "Light",
 
 	/**
 	 * The theme is dark.
 	 */
-	Dark: "dark",
+	Dark: "Dark",
 
 	/**
 	 * The color mode is automatic.
 	 */
-	Auto: "auto"
+	Auto: "Auto"
 });
 
 /**

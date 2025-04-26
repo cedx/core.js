@@ -6,12 +6,12 @@ export const Scenario = Object.freeze({
 	/**
 	 * A scenario in which the underlying model is created.
 	 */
-	Creation: "creation",
+	Creation: "Creation",
 
 	/**
 	 * A scenario in which the underlying model is updated.
 	 */
-	Update: "update"
+	Update: "Update"
 });
 
 /**

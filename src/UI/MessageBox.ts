@@ -19,12 +19,12 @@ export const MessageBoxResult = Object.freeze({
 	/**
 	 * The return value of the message box is "OK".
 	 */
-	OK: "ok",
+	OK: "OK",
 
 	/**
 	 * The return value of the message box is "Cancel".
 	 */
-	Cancel: "cancel"
+	Cancel: "Cancel"
 });
 
 /**
