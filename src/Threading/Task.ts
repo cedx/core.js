@@ -95,20 +95,20 @@ export class Task<T> {
 	get result(): T|undefined {
 		return this.#result instanceof Error ? undefined : this.#result; // eslint-disable-line no-undefined
 	}
-	set value(value: T|undefined) {
-		this.status = TaskStatus.Complete;
+	set result(value: T|undefined) {
+		this.status = TaskStatus.RanToCompletion;
 		this.#result = value;
 	}
 
 	/**
 	 * Runs the task.
 	 * @param args The task arguments.
-	 * @returns The value of the task, if it has completed.
+	 * @returns The task esult, if it has completed successfully.
 	 */
 	async run(...args: any[]): Promise<T|undefined> {
-		this.status = TaskStatus.Pending;
-		try { this.value = await this.#task(...args); } // eslint-disable-line @typescript-eslint/no-unsafe-argument
+		this.status = TaskStatus.Running;
+		try { this.result = await this.#task(...args); } // eslint-disable-line @typescript-eslint/no-unsafe-argument
 		catch (error) { this.error = error; }
-		return this.value;
+		return this.result;
 	}
 }
