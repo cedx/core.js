@@ -1,0 +1,22 @@
+{
+	"extends": "../../../tsconfig.json",
+	"include": ["*.ts"],
+	"compilerOptions": {
+		"composite": true,
+		"declaration": true,
+		"declarationMap": true,
+		"importHelpers": true,
+		"noEmit": false,
+		"outDir": "../../../lib/Web/UI",
+		"rootDir": ".",
+		"tsBuildInfoFile": "../../../var/Web.UI.tsbuildinfo",
+		"useDefineForClassFields": false
+	},
+	"references": [
+		{"path": "../../Base/tsconfig.json"},
+		{"path": "../../Data/tsconfig.json"},
+		{"path": "../../Html/tsconfig.json"},
+		{"path": "../../Net/Http/tsconfig.json"},
+		{"path": "../../Web/tsconfig.json"}
+	]
+}
