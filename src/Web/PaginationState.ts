@@ -1,59 +1,59 @@
 /**
  * Represents information relevant to the pagination of data items.
  */
-export class Pagination {
+export class PaginationState {
 
 	/**
 	 * The current page number.
 	 */
-	page: number;
+	currentPage: number;
 
 	/**
 	 * The number of items per page.
 	 */
-	pageSize: number;
+	itemsPerPage: number;
 
 	/**
 	 * The total number of items.
 	 */
-	totalCount: number;
+	totalItemCount: number;
 
 	/**
 	 * Creates a new pagination.
 	 * @param options An object providing values to initialize this instance.
 	 */
-	constructor(options: PaginationOptions = {}) {
-		this.page = Math.max(1, options.page ?? 1);
-		this.pageSize = Math.max(1, Math.min(100, options.pageSize ?? 25));
-		this.totalCount = Math.max(0, options.totalCount ?? 0);
+	constructor(options: PaginationStateOptions = {}) {
+		this.currentPage = Math.max(1, options.currentPage ?? 1);
+		this.itemsPerPage = Math.max(1, Math.min(100, options.itemsPerPage ?? 25));
+		this.totalItemCount = Math.max(0, options.totalItemCount ?? 0);
+	}
+
+	/**
+	 * The last page number.
+	 */
+	get lastPage(): number {
+		return Math.ceil(this.totalItemCount / this.itemsPerPage);
 	}
 
 	/**
 	 * The data limit.
 	 */
 	get limit(): number {
-		return this.pageSize;
+		return this.itemsPerPage;
 	}
 
 	/**
 	 * The data offset.
 	 */
 	get offset(): number {
-		return (this.page - 1) * this.pageSize;
-	}
-
-	/**
-	 * The total number of pages.
-	 */
-	get pageCount(): number {
-		return Math.ceil(this.totalCount / this.pageSize);
+		return (this.currentPage - 1) * this.itemsPerPage;
 	}
 
 	/**
 	 * The search parameters corresponding to this object.
 	 */
 	get searchParams(): URLSearchParams {
-		return new URLSearchParams({page: this.page.toString(), perPage: this.pageSize.toString()});
+		return new URLSearchParams({page: this.currentPage.toString(), perPage: this.itemsPerPage.toString()});
 	}
 
 	/**
@@ -61,19 +61,19 @@ export class Pagination {
 	 * @param response A server response.
 	 * @returns The pagination corresponding to the HTTP headers of the specified response.
 	 */
-	static fromResponse(response: Response): Pagination {
+	static fromResponse(response: Response): PaginationState {
 		return new this({
-			page: Number(response.headers.get("x-pagination-current-page") ?? "1"),
-			pageSize: Number(response.headers.get("x-pagination-per-page") ?? "25"),
-			totalCount: Number(response.headers.get("x-pagination-total-count") ?? "0")
+			currentPage: Number(response.headers.get("X-Pagination-Current-Page") ?? "1"),
+			itemsPerPage: Number(response.headers.get("X-Pagination-Per-Page") ?? "25"),
+			totalItemCount: Number(response.headers.get("X-Pagination-Total-Count") ?? "0")
 		});
 	}
 }
 
 /**
- * Defines the options of a {@link Pagination} instance.
+ * Defines the options of a {@link PaginationState} instance.
  */
-export type PaginationOptions = Partial<Pick<Pagination, "page"|"pageSize"|"totalCount">>;
+export type PaginationStateOptions = Partial<Pick<PaginationState, "currentPage"|"itemsPerPage"|"totalItemCount">>;
 
 /**
  * A list with information relevant to the pagination of its items.
@@ -88,7 +88,7 @@ export class PaginatedList<T> {
 	/**
 	 * The information relevant to the pagination of the list items.
 	 */
-	pagination: Pagination;
+	pagination: PaginationState;
 
 	/**
 	 * Creates a new paginated list.
@@ -96,7 +96,7 @@ export class PaginatedList<T> {
 	 */
 	constructor(options: PaginatedListOptions<T> = {}) {
 		this.items = options.items ?? [];
-		this.pagination = options.pagination ?? new Pagination;
+		this.pagination = options.pagination ?? new PaginationState;
 	}
 
 	/**
@@ -108,11 +108,11 @@ export class PaginatedList<T> {
 
 	/**
 	 * Creates an empty paginated list.
-	 * @param pageSize The number of items per page.
+	 * @param itemsPerPage The number of items per page.
 	 * @returns An empty paginated list with the specified number of items per page.
 	 */
-	static empty<T>(pageSize: number): PaginatedList<T> {
-		return new this({pagination: new Pagination({pageSize})});
+	static empty<T>(itemsPerPage: number): PaginatedList<T> {
+		return new this({pagination: new PaginationState({itemsPerPage})});
 	}
 
 	/**

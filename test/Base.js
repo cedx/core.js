@@ -1,5 +1,4 @@
 import "./Caching/MemoryCacheTest.js";
-import "./Data/PaginationTest.js";
 import "./Data/SortTest.js";
 import "./DependencyInjection/ContainerTest.js";
 import "./Globalization/RegionInfoTest.js";
@@ -11,3 +10,4 @@ import "./Threading/TaskTest.js";
 import "./Util/DateTest.js";
 import "./Util/NumberTest.js";
 import "./Util/StringTest.js";
+import "./Web/PaginationStateTest.js";
