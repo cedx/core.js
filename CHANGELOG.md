@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [3.4.1](https://github.com/cedx/core.js/compare/v3.4.0...v3.4.1)
+- Fixed a packaging issue.
+
 ## Version [3.4.0](https://github.com/cedx/core.js/compare/v3.3.0...v3.4.0)
 - Moved the classes from the `Util` module to the root.
 - Removed the `Net.PostalAddress` class.
