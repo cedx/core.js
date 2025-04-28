@@ -12,7 +12,7 @@ describe("File utilities", () => {
 	describe("toDataUrl()", () => {
 		it("should convert the specified file to a data URL", async () => {
 			const base64 = `Q8OpZHJpYyBCZWxpbiA8Y2VkcmljQGJlbGluLmlv${platform == "win32" ? "Pg0K" : "Pgo="}`;
-			const url = await toDataUrl("AUTHORS.txt", "text/plain");
+			const url = await toDataUrl("Authors.txt", "text/plain");
 			equal(url.href, `data:text/plain;base64,${base64}`);
 		});
 	});
