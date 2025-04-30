@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [3.5.1](https://github.com/cedx/core.js/compare/v3.5.0...v3.5.1)
+- Fix a regression in the `ThemeDropdown` component.
+
 ## Version [3.5.0](https://github.com/cedx/core.js/compare/v3.4.1...v3.5.0)
 - Moved the `Data.Context` class to the `Web` module.
 - Removed the `Data.Scenario` enumeration.
