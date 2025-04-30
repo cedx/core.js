@@ -111,6 +111,6 @@ export class ThemeDropdown extends Component {
 	 */
 	#applyTheme(): void {
 		const theme = this._theme == ThemeMode.System ? (this.#mediaQuery.matches ? ThemeMode.Dark : ThemeMode.Light) : this._theme;
-		document.documentElement.dataset.bsTheme = theme;
+		document.documentElement.dataset.bsTheme = theme.toLowerCase();
 	}
 }
