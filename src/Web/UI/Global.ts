@@ -6,6 +6,7 @@ import type {OfflineIndicator} from "./OfflineIndicator.js";
 import type {PageSelector} from "./PageSelector.js";
 import type {PageTitle} from "./PageTitle.js";
 import type {RedirectTo} from "./RedirectTo.js";
+import type {ScrollTo} from "./ScrollTo.js";
 import type {ThemeDropdown} from "./ThemeDropdown.js";
 import type {Toast, Toaster} from "./Toaster.js";
 import type {Typeahead} from "./Typeahead.js";
@@ -27,6 +28,7 @@ declare global {
 		"page-selector": PageSelector;
 		"page-title": PageTitle;
 		"redirect-to": RedirectTo;
+		"scroll-to": ScrollTo;
 		"theme-dropdown": ThemeDropdown;
 		"toaster-container": Toaster;
 		"toaster-item": Toast;
