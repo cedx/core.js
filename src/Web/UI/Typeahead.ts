@@ -12,7 +12,7 @@ export class Typeahead extends Component {
 	/**
 	 * The function invoked when the query has been changed.
 	 */
-	@property({attribute: false}) handler: (value: string) => Promise<Map<string, string>> = () => Promise.resolve(new Map<string, string>);
+	@property({attribute: false}) handler: (query: string) => Promise<string[]> = () => Promise.resolve([]);
 
 	/**
 	 * The data list identifier.
@@ -37,7 +37,7 @@ export class Typeahead extends Component {
 	/**
 	 * The data list items.
 	 */
-	@state() private items = new Map<string, string>;
+	@state() private items: string[] = [];
 
 	/**
 	 * The debounced handler used to look up the query.
@@ -54,7 +54,7 @@ export class Typeahead extends Component {
 	 */
 	override connectedCallback(): void {
 		super.connectedCallback();
-		const handler = (query: string): void => { this.handler(query).then(items => this.items = items, () => this.items = new Map<string, string>) };
+		const handler = (query: string): void => { this.handler(query).then(items => this.items = items, () => this.items = []) };
 		this.#debounced = this.#debounce(handler, this.wait);
 	}
 
@@ -65,7 +65,7 @@ export class Typeahead extends Component {
 	protected override render(): TemplateResult {
 		return html`
 			<datalist id=${this.list}>
-				${map(this.items, ([key, value]) => html`<option value=${key}>${value}</option>`)}
+				${map(this.items, value => html`<option .value=${value}></option>`)}
 			</datalist>
 		`;
 	}
@@ -77,7 +77,7 @@ export class Typeahead extends Component {
 		const query = this.query.trim();
 		if (query != this.#previousQuery) {
 			this.#previousQuery = query;
-			if (query.length < this.minLength) this.items = new Map;
+			if (query.length < this.minLength) this.items = [];
 			else this.#debounced(query);
 		}
 	}
