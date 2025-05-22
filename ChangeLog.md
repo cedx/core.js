@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [3.6.0](https://github.com/cedx/core.js/compare/v3.5.1...v3.6.0)
+- Modified the return type of the `Typeahead` handler.
+
 ## Version [3.5.1](https://github.com/cedx/core.js/compare/v3.5.0...v3.5.1)
 - Fix a regression in the `ThemeDropdown` component.
 
