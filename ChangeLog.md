@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [3.7.0](https://github.com/cedx/core.js/compare/v3.6.0...v3.7.0)
+- Raised the maximum allowed value of the `PaginationState.itemsPerPage` property to `1000`.
+
 ## Version [3.6.0](https://github.com/cedx/core.js/compare/v3.5.1...v3.6.0)
 - Modified the return type of the `Typeahead` handler.
 
