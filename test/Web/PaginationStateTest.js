@@ -17,10 +17,10 @@ describe("PaginationState", () => {
 	});
 
 	describe("limit", () => {
-		it("should return the same value as the page size, with a minimum of 1 and a maxiumum of 100", () => {
+		it("should return the same value as the page size, with a minimum of 1 and a maxiumum of 1000", () => {
 			equal(new PaginationState({itemsPerPage: 0}).limit, 1);
 			equal(new PaginationState({itemsPerPage: 25}).limit, 25);
-			equal(new PaginationState({itemsPerPage: 123}).limit, 100);
+			equal(new PaginationState({itemsPerPage: 123456}).limit, 1000);
 		});
 	});
 
@@ -48,7 +48,7 @@ describe("PaginationState", () => {
 			equal(searchParams.get("perPage"), "25");
 
 			equal(new PaginationState({itemsPerPage: 66}).searchParams.get("perPage"), "66");
-			equal(new PaginationState({itemsPerPage: 456}).searchParams.get("perPage"), "100");
+			equal(new PaginationState({itemsPerPage: 123456}).searchParams.get("perPage"), "1000");
 		});
 	});
 

@@ -24,7 +24,7 @@ export class PaginationState {
 	 */
 	constructor(options: PaginationStateOptions = {}) {
 		this.currentPage = Math.max(1, options.currentPage ?? 1);
-		this.itemsPerPage = Math.max(1, Math.min(100, options.itemsPerPage ?? 25));
+		this.itemsPerPage = Math.max(1, Math.min(1000, options.itemsPerPage ?? 25));
 		this.totalItemCount = Math.max(0, options.totalItemCount ?? 0);
 	}
 
