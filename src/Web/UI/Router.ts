@@ -1,7 +1,7 @@
 import {StatusCodes} from "#Net/Http/StatusCodes.js";
 import type {ViewportScroller} from "#Web/Html/ViewportScroller.js";
 import {Router as LitRouter, type BaseRouteConfig, type RouteConfig} from "@lit-labs/router";
-import {Tooltip} from "bootstrap";
+import {Popover, Tooltip} from "bootstrap";
 import {html, type ReactiveControllerHost} from "lit";
 
 /**
@@ -73,8 +73,10 @@ export class Router extends LitRouter {
 	 * @returns Resolves when the router has navigated to the specified route.
 	 */
 	override async goto(route: string, options: {push?: boolean} = {}): Promise<void> {
-		document.body.querySelector("loading-indicator")?.stop({force: true});
-		for (const element of document.body.querySelectorAll('[data-bs-toggle="tooltip"]')) Tooltip.getInstance(element)?.dispose();
+		const {body} = document;
+		body.querySelector("loading-indicator")?.stop({force: true});
+		for (const element of body.querySelectorAll('[data-bs-toggle="popover"]')) Popover.getInstance(element)?.dispose();
+		for (const element of body.querySelectorAll('[data-bs-toggle="tooltip"]')) Tooltip.getInstance(element)?.dispose();
 
 		await super.goto(route.startsWith("/") || !this.#basePath ? route : `${this.#basePath}/${route}`);
 		if (options.push) history.pushState({}, "", route);
