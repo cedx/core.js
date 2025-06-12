@@ -33,7 +33,7 @@ export function themeIcon(theme: ThemeMode): string {
 	switch (theme) {
 		case ThemeMode.Dark: return "dark_mode";
 		case ThemeMode.Light: return "light_mode";
-		default: return "tonality";
+		default: return "contrast";
 	}
 }
 
