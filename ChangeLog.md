@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [3.7.1](https://github.com/cedx/core.js/compare/v3.7.0...v3.7.1)
+- Fixed the icon associated with the `ThemeMode.System` enumerated value.
+
 ## Version [3.7.0](https://github.com/cedx/core.js/compare/v3.6.0...v3.7.0)
 - Raised the maximum allowed value of the `PaginationState.itemsPerPage` property to `1000`.
 
