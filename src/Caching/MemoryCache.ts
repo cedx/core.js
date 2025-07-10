@@ -2,6 +2,22 @@ import {Duration} from "#Base/Duration.js";
 import type {ICache, ICacheSerializer} from "./ICache.js";
 
 /**
+ * An in-memory cache value.
+ */
+export interface IMemoryCacheEntry {
+
+	/**
+	 * The expiration date and time.
+	 */
+	expires: Date|null;
+
+	/**
+	 * The cached value.
+	 */
+	value: string;
+};
+
+/**
  * Implements an in-memory cache.
  */
 export class MemoryCache implements ICache {
@@ -9,7 +25,7 @@ export class MemoryCache implements ICache {
 	/**
 	 * The cache data.
 	 */
-	readonly #cache = new Map<string, MemoryCacheEntry>;
+	readonly #cache = new Map<string, IMemoryCacheEntry>;
 
 	/**
 	 * The default duration in seconds before a cache entry will expire.
@@ -127,22 +143,6 @@ export class MemoryCache implements ICache {
 		return true;
 	}
 }
-
-/**
- * An in-memory cache value.
- */
-export interface MemoryCacheEntry {
-
-	/**
-	 * The expiration date and time.
-	 */
-	expires: Date|null;
-
-	/**
-	 * The cached value.
-	 */
-	value: string;
-};
 
 /**
  * Defines the options of a {@link MemoryCache} instance.
