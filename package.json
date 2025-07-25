@@ -50,12 +50,9 @@
 	},
 	"keywords": [
 		"belin",
-		"client",
 		"core",
 		"framework",
-		"library",
-		"server",
-		"ui"
+		"library"
 	],
 	"peerDependencies": {
 		"@lit-labs/router": ">=0.1.0",
