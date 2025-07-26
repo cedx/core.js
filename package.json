@@ -1,4 +1,5 @@
 {
+	"author": "Cédric Belin <cedx@outlook.com>",
 	"bugs": "https://github.com/cedx/core.js/issues",
 	"description": "Base library of Cédric Belin, full stack developer.",
 	"homepage": "https://github.com/cedx/core.js",
@@ -7,11 +8,6 @@
 	"repository": "cedx/core.js",
 	"type": "module",
 	"version": "3.7.1",
-	"author": {
-		"email": "cedx@outlook.com",
-		"name": "Cédric Belin",
-		"url": "https://belin.io"
-	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.10",
 		"@types/chai": "^5.2.2",
