@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [3.7.2](https://github.com/cedx/core.js/compare/v3.7.1...v3.7.2)
+- Fixed the return type of the generator functions.
+
 ## Version [3.7.1](https://github.com/cedx/core.js/compare/v3.7.0...v3.7.1)
 - Fixed the icon associated with the `ThemeMode.System` enumerated value.
 
