@@ -7,7 +7,7 @@
 	"name": "@cedx/core",
 	"repository": "cedx/core.js",
 	"type": "module",
-	"version": "3.7.1",
+	"version": "3.7.2",
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.10",
 		"@types/chai": "^5.2.2",
