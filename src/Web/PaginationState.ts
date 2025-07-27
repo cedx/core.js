@@ -78,7 +78,7 @@ export type PaginationStateOptions = Partial<Pick<PaginationState, "currentPage"
 /**
  * A list with information relevant to the pagination of its items.
  */
-export class PaginatedList<T> {
+export class PaginatedList<T> implements Iterable<T, void, void> {
 
 	/**
 	 * The list items.
@@ -119,7 +119,7 @@ export class PaginatedList<T> {
 	 * Returns a new iterator that allows iterating the items of this list.
 	 * @returns An iterator over the items of this list.
 	 */
-	*[Symbol.iterator](): IterableIterator<T> {
+	*[Symbol.iterator](): Generator<T, void, void> {
 		for (const item of this.items) yield item;
 	}
 }

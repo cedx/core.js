@@ -27,7 +27,7 @@ export type SortedProperty = [string, SortDirection];
 /**
  * Represents information relevant to the sorting of data items.
  */
-export class SortState {
+export class SortState implements Iterable<SortedProperty> {
 
 	/**
 	 * The list of sorted properties.
@@ -75,7 +75,7 @@ export class SortState {
 	 * Returns a new iterator that allows iterating the entries of this sort.
 	 * @returns An iterator over the sorted properties.
 	 */
-	*[Symbol.iterator](): IterableIterator<SortedProperty> {
+	*[Symbol.iterator](): Generator<SortedProperty, void, void> {
 		for (const entry of this.#properties) yield entry;
 	}
 
