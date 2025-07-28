@@ -22,7 +22,7 @@ describe("MailAddress", () => {
 		});
 
 		it("should return `false` if the address is not empty", () => {
-			assert.isFalse(new MailAddress("cedx@outlook.com").isEmpty);
+			assert.isFalse(new MailAddress("cedric@belin.io").isEmpty);
 		});
 	});
 
@@ -34,7 +34,7 @@ describe("MailAddress", () => {
 		});
 
 		it("should return `true` for a valid address", () => {
-			assert.isTrue(new MailAddress("cedx@outlook.com").isValid);
+			assert.isTrue(new MailAddress("cedric@belin.io").isValid);
 			assert.isTrue(new MailAddress("foo-bar.baz-qux@foo.bar.baz.qux.tld").isValid);
 		});
 	});
