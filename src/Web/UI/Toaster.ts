@@ -124,7 +124,7 @@ export class Toast extends Component {
 		const {context = Context.Info} = this.notification;
 		return html`
 			<div class="toast" @hidden.bs.toast=${() => this.toaster.close(this.notification)}>
-				<div class="toast-header bg-${context}">
+				<div class="toast-header toast-header-${context}">
 					${when(this.notification.icon, () => html`<i class="icon icon-fill me-2 text-${context}">${this.notification.icon}</i>`)}
 					<b class="me-auto">${this.notification.caption}</b>
 					<small class="text-secondary">${this.elapsedTime}</small>
