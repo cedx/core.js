@@ -70,7 +70,7 @@ export class PageTitle extends Component {
 	 * Method invoked after each rendering.
 	 */
 	protected override updated(): void {
-		const text = this.text.trim() || this.textContent?.trim() || ""; // eslint-disable-line @typescript-eslint/prefer-nullish-coalescing
+		const text = this.text.trim() || this.textContent?.trim() || ""; // eslint-disable-line @typescript-eslint/no-unnecessary-condition
 		document.title = this.isStandalone ? text : [text, this.#appName].filter(item => item.length).join(` ${this.delimiter} `);
 	}
 }
