@@ -32,7 +32,7 @@ export class Container {
 		if (!this.#services.has(id))
 			if (this.#factories.has(id)) this.set(id, this.#factories.get(id)!());
 			else if (typeof id == "function") this.set(id, Reflect.construct(id, []));
-			else throw Error("There is no factory registered with the specified identifier.");
+			else throw new Error("There is no factory registered with the specified identifier.");
 
 		return this.#services.get(id) as T;
 	}
